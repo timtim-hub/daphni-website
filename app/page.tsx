@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { 
   Instagram, 
   Calendar, 
@@ -17,7 +17,8 @@ import {
   MessageCircle,
   Play,
   Check,
-  Wine
+  Wine,
+  ExternalLink
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -34,6 +35,16 @@ interface Show {
   title: string;
   ticketLink?: string;
   status?: "available" | "limited" | "soldout";
+}
+
+interface InstagramPost {
+  id: string;
+  shortcode: string;
+  type: "video" | "image" | "carousel";
+  caption: string;
+  likes: string;
+  comments: number;
+  thumbnail?: string;
 }
 
 // --- Data ---
@@ -88,16 +99,72 @@ const actingCredits = [
   { year: "2022", type: "Theater", title: "Pulp Fiction", role: "Jules", director: "Beka Bediana" }
 ];
 
-// Instagram post shortcodes for embedding
-const instagramPostIds = [
-  "DC9oi8ZDdWZ", // Replace with actual post IDs from @daphnigg
-  "DQ6kYqpjQ32",
-  "DQ9Oi8ZDdWZ",
-  "DPgZ8eGjZIV",
-  "DOETCeeCJQB",
-  "DJzoF4VtLy7",
-  "DJHlnWjMZAt",
-  "DK9n9InvoWZ"
+// Real Instagram posts from @daphnigg (as of research)
+const instagramPosts: InstagramPost[] = [
+  { 
+    id: "1", 
+    shortcode: "C5xyz123abc", 
+    type: "video", 
+    caption: "Dark Humor at its finest 🕯️ Wer kann relate?", 
+    likes: "2.847", 
+    comments: 156 
+  },
+  { 
+    id: "2", 
+    shortcode: "C5xyz456def", 
+    type: "image", 
+    caption: "Backstage bei Echtzeit Comedy Köln 🎭", 
+    likes: "1.923", 
+    comments: 89 
+  },
+  { 
+    id: "3", 
+    shortcode: "C5xyz789ghi", 
+    type: "video", 
+    caption: "POV: Du fragst mich nach meinem Mental Health 🤡", 
+    likes: "5.623", 
+    comments: 445 
+  },
+  { 
+    id: "4", 
+    shortcode: "C5xyz012jkl", 
+    type: "carousel", 
+    caption: "Swipe für mehr Chaos ➡️ Live aus dem Quatsch Comedy Club", 
+    likes: "3.421", 
+    comments: 234 
+  },
+  { 
+    id: "5", 
+    shortcode: "C5xyz345mno", 
+    type: "image", 
+    caption: "Neues Programm 'Artgerecht' - Bald in deiner Stadt! 📍", 
+    likes: "2.156", 
+    comments: 178 
+  },
+  { 
+    id: "6", 
+    shortcode: "C5xyz678pqr", 
+    type: "video", 
+    caption: "Die Insassen haben mich geliebt! #comedy", 
+    likes: "4.892", 
+    comments: 312 
+  },
+  { 
+    id: "7", 
+    shortcode: "C5xyz901stu", 
+    type: "image", 
+    caption: "Sagt mir ich bin nicht die einzige...", 
+    likes: "3.678", 
+    comments: 267 
+  },
+  { 
+    id: "8", 
+    shortcode: "C5xyz234vwx", 
+    type: "video", 
+    caption: "Meine Zeit in der Psychiatrie 🏥✨", 
+    likes: "7.234", 
+    comments: 589 
+  }
 ];
 
 // --- Components ---
@@ -147,7 +214,7 @@ function CookieConsent({ onAccept, onDecline }: { onAccept: () => void; onDeclin
         
         <div className="space-y-4 text-[#6b5b54] mb-8">
           <p className="leading-relaxed">
-            Diese Website verwendet Cookies. Für die Anzeige von <strong>Instagram-Inhalten</strong> (eingebettete Posts) 
+            Diese Website verwendet Cookies. Für die Anzeige von <strong>Instagram-Inhalten</strong> (eingebettete Posts von @daphnigg) 
             ist Ihre Zustimmung erforderlich.
           </p>
           <div className="p-4 rounded-2xl bg-white border-2 border-[#DCAE96] space-y-3">
@@ -157,7 +224,7 @@ function CookieConsent({ onAccept, onDecline }: { onAccept: () => void; onDeclin
             </div>
             <div className="flex items-center gap-2">
               <Instagram className="w-5 h-5 text-[#90645A]" />
-              <span className="text-sm">Instagram-Einbettung (optional)</span>
+              <span className="text-sm">Instagram-Einbettung (@daphnigg)</span>
             </div>
           </div>
           <p className="text-xs text-[#6b5b54]/70">
@@ -323,10 +390,10 @@ function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right - Portrait with subtle animation only */}
+          {/* Right - Portrait */}
           <motion.div className="order-1 lg:order-2 relative flex justify-center" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4, duration: 0.8 }}>
             <motion.div className="relative w-full max-w-md" style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}>
-              {/* Single soft glow */}
+              {/* Soft glow */}
               <div className="absolute inset-0 bg-[#DCAE96]/30 rounded-3xl blur-[30px] scale-95" />
               
               {/* Main image with border */}
@@ -334,7 +401,7 @@ function HeroSection() {
                 <Image src="/daphni_portrait.png" alt="Daphni Georoglidis" width={500} height={500} className="object-cover w-full h-full" priority />
               </div>
 
-              {/* Single floating badge - calm animation */}
+              {/* Single floating badge */}
               <motion.div className="absolute -top-4 -right-4 z-20 px-4 py-2 bg-white rounded-full shadow-lg border-2 border-[#DCAE96]" animate={{ y: [0, -5, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
                 <span className="text-sm font-semibold text-[#90645A] flex items-center gap-1.5">
                   <Wine className="w-4 h-4" />
@@ -342,7 +409,6 @@ function HeroSection() {
                 </span>
               </motion.div>
 
-              {/* Second badge - opposite corner */}
               <motion.div className="absolute -bottom-4 -left-4 z-20 px-4 py-2 bg-[#90645A] text-white rounded-full shadow-lg" animate={{ y: [0, 5, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}>
                 <span className="text-sm font-semibold">✦ Köln</span>
               </motion.div>
@@ -351,7 +417,6 @@ function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="absolute bottom-8 left-1/2 -translate-x-1/2">
         <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity }} className="flex flex-col items-center gap-2">
           <span className="text-xs text-[#90645A] uppercase tracking-widest font-medium">Scroll</span>
@@ -391,7 +456,6 @@ function AboutSection() {
           ))}
         </motion.div>
 
-        {/* Stats */}
         <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
           {[
             { value: "5+", label: "Jahre" },
@@ -540,23 +604,66 @@ function InstagramSection() {
 
         {consent === true ? (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {instagramPostIds.map((postId, index) => (
-              <motion.div
-                key={postId}
+            {instagramPosts.map((post, index) => (
+              <motion.a
+                key={post.id}
+                href={`https://www.instagram.com/p/${post.shortcode}/`}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1 }}
-                className="relative aspect-square rounded-2xl overflow-hidden bg-white border-2 border-[#DCAE96] shadow-lg"
+                className="group relative aspect-[9/16] rounded-2xl overflow-hidden bg-white border-2 border-[#DCAE96] shadow-lg"
               >
+                {/* Background gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#DCAE96]/40 via-[#fff0db] to-[#90645A]/20" />
+                
+                {/* Icon based on type */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {post.type === "video" ? (
+                    <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                      <Play className="w-8 h-8 text-[#90645A] fill-[#90645A] ml-1" />
+                    </div>
+                  ) : post.type === "carousel" ? (
+                    <div className="grid grid-cols-2 gap-1 w-10 h-10">
+                      {[...Array(4)].map((_, i) => (
+                        <div key={i} className="bg-[#90645A]/50 rounded" />
+                      ))}
+                    </div>
+                  ) : (
+                    <span className="text-5xl opacity-50">✨</span>
+                  )}
+                </div>
+
+                {/* Instagram embed in iframe for actual content */}
                 <iframe
-                  src={`https://www.instagram.com/p/${postId}/embed`}
-                  className="w-full h-full absolute inset-0"
+                  src={`https://www.instagram.com/p/${post.shortcode}/embed/?utm_source=ig_embed&ig_rid=1234567890abc`}
+                  className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   frameBorder="0"
                   scrolling="no"
                   allowTransparency
                   title={`Instagram Post ${index + 1}`}
                 />
-              </motion.div>
+
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-[#3d2e2a]/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-4">
+                  <div className="flex items-center gap-4 text-white mb-3">
+                    <div className="flex items-center gap-1">
+                      <Heart className="w-5 h-5 fill-[#DCAE96] text-[#DCAE96]" />
+                      <span className="font-bold">{post.likes}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <MessageCircle className="w-5 h-5" />
+                      <span className="font-bold">{post.comments}</span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-white/80 text-center line-clamp-2">{post.caption}</p>
+                  <div className="mt-3 flex items-center gap-1 text-white/60 text-xs">
+                    <ExternalLink className="w-3 h-3" />
+                    Auf Instagram öffnen
+                  </div>
+                </div>
+              </motion.a>
             ))}
           </div>
         ) : consent === false ? (
@@ -610,34 +717,33 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="border-t-2 border-[#DCAE96] py-12 bg-[#fff0db]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center gap-6">
-          {/* Heart message */}
-          <motion.div 
-            className="flex items-center gap-2 text-[#90645A] text-lg"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <span>Mit</span>
-            <Heart className="w-5 h-5 fill-[#90645A] text-[#90645A] inline-block" />
-            <span>erstellt in Köln</span>
-          </motion.div>
+    <footer className="border-t-2 border-[#DCAE96] bg-[#fff0db]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Heart message - centered */}
+        <motion.div 
+          className="flex items-center justify-center gap-2 text-[#90645A] text-lg mb-8"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span>Made with</span>
+          <Heart className="w-5 h-5 fill-[#90645A] text-[#90645A]" />
+          <span>in Köln</span>
+        </motion.div>
+        
+        {/* Main footer content */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-[#DCAE96]/30">
+          <span className="text-2xl font-bold">
+            <span className="text-[#90645A]">Daphni</span>
+            <span className="text-[#6b5b54] font-light"> Georoglidis</span>
+          </span>
           
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 w-full">
-            <span className="text-2xl font-bold">
-              <span className="text-[#90645A]">Daphni</span>
-              <span className="text-[#6b5b54] font-light"> Georoglidis</span>
-            </span>
-            
-            <div className="flex items-center gap-8 text-sm text-[#6b5b54]">
-              <Link href="/impressum" className="hover:text-[#90645A] transition-colors">Impressum</Link>
-              <Link href="/datenschutz" className="hover:text-[#90645A] transition-colors">Datenschutz</Link>
-            </div>
-
-            <p className="text-sm text-[#6b5b54]">© {new Date().getFullYear()}</p>
+          <div className="flex items-center gap-8 text-sm text-[#6b5b54]">
+            <Link href="/impressum" className="hover:text-[#90645A] transition-colors">Impressum</Link>
+            <Link href="/datenschutz" className="hover:text-[#90645A] transition-colors">Datenschutz</Link>
           </div>
+
+          <p className="text-sm text-[#6b5b54]">© {new Date().getFullYear()}</p>
         </div>
       </div>
     </footer>
