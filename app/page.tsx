@@ -1263,10 +1263,8 @@ function ContactSection() {
           transition={{ delay: 0.2 }}
         >
           <motion.div
-            whileHover={{ scale: 1.1 }} 
+            whileHover={{ scale: 1.05 }} 
             whileTap={{ scale: 0.95 }}
-            animate={{ rotate: [0, 15, -15, 0] }}
-            transition={{ rotate: { duration: 2, repeat: Infinity } }}
           >
             <Link href="https://instagram.com/daphnigg" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 px-10 py-5 bg-[#90645A] text-white rounded-full font-bold text-lg hover:bg-[#6b4a42] transition-colors shadow-lg">
               <Instagram className="w-6 h-6" />
