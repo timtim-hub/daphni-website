@@ -1262,25 +1262,14 @@ function ContactSection() {
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          <motion.div 
+          <motion.div
             whileHover={{ scale: 1.1 }} 
             whileTap={{ scale: 0.95 }}
-            animate={{ 
-              boxShadow: [
-                "0 0 0 0 rgba(144, 100, 90, 0)", 
-                "0 0 30px 10px rgba(144, 100, 90, 0.2)", 
-                "0 0 0 0 rgba(144, 100, 90, 0)"
-              ] 
-            }}
-            transition={{ boxShadow: { duration: 2, repeat: Infinity } }}
+            animate={{ rotate: [0, 15, -15, 0] }}
+            transition={{ rotate: { duration: 2, repeat: Infinity } }}
           >
             <Link href="https://instagram.com/daphnigg" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 px-10 py-5 bg-[#90645A] text-white rounded-full font-bold text-lg hover:bg-[#6b4a42] transition-colors shadow-lg">
-              <motion.div
-                animate={{ rotate: [0, 15, -15, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <Instagram className="w-6 h-6" />
-              </motion.div>
+              <Instagram className="w-6 h-6" />
               Anfrage senden
             </Link>
           </motion.div>
