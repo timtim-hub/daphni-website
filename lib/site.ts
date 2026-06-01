@@ -3,7 +3,7 @@ export const site = {
   firstName: "Daphni",
   lastName: "Georoglidis",
   roles: ["Stand-up Comedienne", "Schauspielerin"],
-  tagline: ["Jung.", "Düster.", "Gnadenlos."],
+  tagline: ["Düster.", "Gnadenlos.", "Komisch."],
   instagram: "https://instagram.com/daphnigg",
   instagramHandle: "@daphnigg",
   email: "kontakt@daphni-georoglidis.de",

@@ -29,135 +29,165 @@ function useEnable3D() {
   return enabled;
 }
 
+/** Premium duotone-treated portrait — always rendered; also the WebGL fallback. */
+function PortraitImage() {
+  return (
+    <div className="absolute inset-0">
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(55% 45% at 50% 38%, rgba(255,46,18,0.20), transparent 72%)",
+        }}
+      />
+      <Image
+        src="/daphni_portrait.png"
+        alt={`${site.name}, ${site.roles[0]}`}
+        fill
+        priority
+        sizes="(max-width: 1024px) 100vw, 50vw"
+        className="object-contain object-bottom"
+        style={{ filter: "grayscale(0.5) contrast(1.06) brightness(0.95) saturate(0.9)" }}
+      />
+      {/* accent duotone wash */}
+      <div
+        aria-hidden
+        className="absolute inset-0 mix-blend-soft-light opacity-50"
+        style={{
+          background: "linear-gradient(180deg, rgba(255,46,18,0.25), transparent 55%)",
+        }}
+      />
+    </div>
+  );
+}
+
 export default function Hero() {
   const enable3D = useEnable3D();
+  const [ready, setReady] = useState(false);
+  const [lost, setLost] = useState(false);
+  const show3D = enable3D && !lost;
+
   const letters = site.firstName.toUpperCase().split("");
 
   return (
     <section
       id="top"
-      className="relative min-h-[100svh] w-full overflow-hidden"
       aria-label="Intro"
+      className="relative grid min-h-[100svh] grid-cols-1 overflow-hidden lg:grid-cols-12"
     >
-      {/* radial accent glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(60% 50% at 70% 35%, rgba(255,46,18,0.16), transparent 70%)",
-        }}
-      />
-
-      {/* 3D / fallback portrait layer */}
-      <div className="absolute inset-0 z-0">
-        {enable3D ? (
-          <HeroCanvas />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative h-[62vmin] w-[62vmin] max-w-[520px] max-h-[520px]">
-              <Image
-                src="/daphni_portrait.png"
-                alt={`${site.name}, ${site.roles[0]}`}
-                fill
-                priority
-                sizes="(max-width: 768px) 80vw, 520px"
-                className="object-contain"
-                style={{ filter: "contrast(1.05) saturate(0.95)" }}
-              />
+      {/* ---------------- Portrait column (right on desktop, top on mobile) ---------------- */}
+      <div className="relative order-1 h-[52svh] min-h-[320px] lg:order-2 lg:col-span-5 lg:h-auto xl:col-span-6">
+        <div className="absolute inset-0">
+          <PortraitImage />
+          {show3D && (
+            <div
+              className="absolute inset-0 transition-opacity duration-1000"
+              style={{ opacity: ready ? 1 : 0 }}
+            >
+              <HeroCanvas onReady={() => setReady(true)} onLost={() => setLost(true)} />
             </div>
-          </div>
-        )}
+          )}
+        </div>
+        {/* blend portrait into the page edges */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(11,11,13,0.55) 0%, transparent 22%, transparent 70%, rgba(11,11,13,0.95) 100%)",
+          }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 left-0 hidden w-40 lg:block"
+          style={{ background: "linear-gradient(90deg, var(--ink), transparent)" }}
+        />
       </div>
 
-      {/* Eyebrow top */}
-      <div className="container-px absolute left-0 right-0 top-28 z-20 flex items-center justify-between">
-        <motion.p
-          className="eyebrow"
+      {/* ---------------- Type column (left) ---------------- */}
+      <div className="relative order-2 z-10 flex flex-col justify-center px-[clamp(1.25rem,5vw,5rem)] pb-16 pt-10 lg:order-1 lg:col-span-7 lg:py-32 xl:col-span-6">
+        <motion.div
+          className="mb-6 flex items-center gap-4"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8, ease: EASE }}
+          transition={{ delay: 0.3, duration: 0.8, ease: EASE }}
         >
-          {site.roles[0]}
-        </motion.p>
+          <span className="h-px w-10 bg-accent" />
+          <span className="eyebrow">{site.roles[0]}</span>
+        </motion.div>
+
+        <h1 className="font-display leading-[0.84] text-bone">
+          <span className="sr-only">
+            {site.name} — {site.roles[0]} und {site.roles[1]}
+          </span>
+          <span aria-hidden className="block overflow-hidden">
+            <span className="flex text-[clamp(3.5rem,11vw,9.5rem)] font-semibold tracking-[-0.03em]">
+              {letters.map((l, i) => (
+                <motion.span
+                  key={i}
+                  className="inline-block"
+                  initial={{ y: "115%" }}
+                  animate={{ y: 0 }}
+                  transition={{ delay: 0.15 + i * 0.06, duration: 0.9, ease: EASE }}
+                >
+                  {l}
+                </motion.span>
+              ))}
+            </span>
+          </span>
+          <motion.span
+            aria-hidden
+            className="mt-1 block text-outline text-[clamp(1.5rem,5.5vw,4rem)] italic"
+            initial={{ opacity: 0, x: -16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.65, duration: 0.9, ease: EASE }}
+          >
+            {site.lastName}
+          </motion.span>
+        </h1>
+
         <motion.p
-          className="eyebrow hidden sm:block"
-          initial={{ opacity: 0, y: 12 }}
+          className="mt-8 max-w-md text-lead text-bone/80"
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8, ease: EASE }}
+          transition={{ delay: 0.85, duration: 0.9, ease: EASE }}
         >
-          Köln · Düsseldorf · Berlin · deutschlandweit
+          <span className="font-display italic text-accent">{site.tagline.join(" ")}</span>{" "}
+          Dark Humor, der genau dorthin geht, wo es weh tut.
         </motion.p>
-      </div>
 
-      {/* Giant kinetic name */}
-      <div className="pointer-events-none absolute inset-0 z-10 flex items-end pb-[16vh] sm:items-center sm:pb-0">
-        <div className="container-px w-full">
-          <h1 className="font-display text-bone leading-[0.82]">
-            <span className="sr-only">
-              {site.name} — {site.roles[0]} und {site.roles[1]}
-            </span>
-            <span aria-hidden className="block">
-              <span className="flex justify-start overflow-hidden text-hero font-semibold">
-                {letters.map((l, i) => (
-                  <motion.span
-                    key={i}
-                    className="inline-block"
-                    initial={{ y: "115%", rotate: 6 }}
-                    animate={{ y: 0, rotate: 0 }}
-                    transition={{ delay: 0.15 + i * 0.07, duration: 1, ease: EASE }}
-                  >
-                    {l}
-                  </motion.span>
-                ))}
-              </span>
-              <motion.span
-                className="mt-1 block font-display text-outline text-[clamp(1.6rem,7vw,5.5rem)] italic"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.7, duration: 1, ease: EASE }}
-              >
-                {site.lastName}
-              </motion.span>
-            </span>
-          </h1>
-        </div>
-      </div>
+        <motion.div
+          className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.9, ease: EASE }}
+        >
+          <Magnetic>
+            <a
+              href={site.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor
+              className="group inline-flex items-center gap-3 rounded-full bg-accent px-7 py-4 text-sm font-medium text-bone transition-transform hover:scale-[1.03]"
+            >
+              Termine auf Instagram
+              <ArrowDownRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+            </a>
+          </Magnetic>
+          <a href="#about" data-cursor className="accent-link text-sm text-bone/70">
+            Mehr erfahren
+          </a>
+        </motion.div>
 
-      {/* Bottom bar: tagline + CTA */}
-      <div className="container-px absolute bottom-8 left-0 right-0 z-20">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <motion.p
-            className="max-w-sm text-lead text-bone/80"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.9, ease: EASE }}
-          >
-            <span className="font-display italic text-accent">
-              {site.tagline.join(" ")}
-            </span>{" "}
-            Dark Humor, der genau dorthin geht, wo es weh tut.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.05, duration: 0.9, ease: EASE }}
-          >
-            <Magnetic>
-              <a
-                href={site.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-cursor
-                className="group inline-flex items-center gap-3 rounded-full border border-bone/25 bg-bone/[0.03] px-7 py-4 text-sm font-medium backdrop-blur-sm transition-colors hover:border-accent hover:bg-accent hover:text-bone"
-              >
-                Termine auf Instagram
-                <ArrowDownRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
-              </a>
-            </Magnetic>
-          </motion.div>
-        </div>
+        <motion.p
+          className="mt-12 text-[0.7rem] uppercase tracking-[0.28em] text-smoke"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.9 }}
+        >
+          Köln · Düsseldorf · Berlin · <span className="text-bone/70">deutschlandweit</span>
+        </motion.p>
       </div>
     </section>
   );
