@@ -50,12 +50,12 @@ export default function Impressum() {
               <p className="mt-1">
                 Instagram:{" "}
                 <a
-                  href="https://instagram.com/daphnigg"
+                  href="https://instagram.com/daphni.comedy"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="accent-link text-accent"
                 >
-                  @daphnigg
+                  @daphni.comedy
                 </a>
               </p>
             </section>

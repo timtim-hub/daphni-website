@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "Daphni Georoglidis — Stand-up Comedienne & Schauspielerin",
     description:
       "Düster. Gnadenlos. Komisch. Stand-up-Comedienne & Schauspielerin aus Köln — deutschlandweit auf Tour.",
-    creator: "@daphnigg",
+    creator: "@daphni.comedy",
   },
   robots: {
     index: true,
@@ -83,7 +83,7 @@ const jsonLd = {
         "Stand-up-Comedienne und Schauspielerin aus Köln mit Dark Humor. Tritt deutschlandweit auf, u. a. in Köln, Düsseldorf und Berlin.",
       url: SITE_URL,
       image: `${SITE_URL}/daphni_portrait.png`,
-      sameAs: ["https://instagram.com/daphnigg"],
+      sameAs: ["https://instagram.com/daphni.comedy"],
       knowsLanguage: ["de", "en"],
       address: {
         "@type": "PostalAddress",

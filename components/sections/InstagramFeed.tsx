@@ -26,8 +26,7 @@ export default function InstagramFeed() {
                 className="h-full w-full"
                 loading="lazy"
                 title={`Instagram-Beitrag ${i + 1} von ${site.instagramHandle}`}
-                scrolling="no"
-                allowTransparency
+                referrerPolicy="strict-origin-when-cross-origin"
               />
             </motion.div>
           ))}

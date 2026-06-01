@@ -33,7 +33,7 @@ export default function OpengraphImage() {
           }}
         >
           <span>Stand-up Comedienne</span>
-          <span style={{ color: "#ff2e12" }}>@daphnigg</span>
+          <span style={{ color: "#ff2e12" }}>@daphni.comedy</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>

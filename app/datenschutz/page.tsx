@@ -80,7 +80,7 @@ export default function Datenschutz() {
               </h2>
               <p>
                 Auf dieser Website können Beiträge des Instagram-Profils{" "}
-                <strong>@daphnigg</strong> eingebettet werden. Diese Inhalte werden{" "}
+                <strong>@daphni.comedy</strong> eingebettet werden. Diese Inhalte werden{" "}
                 <strong>erst nach deiner aktiven Einwilligung</strong> geladen
                 (Opt-in). Vorher wird keine Verbindung zu Instagram aufgebaut.
               </p>
