@@ -53,7 +53,7 @@ export default function OpengraphImage() {
         </div>
 
         <div style={{ display: "flex", fontSize: 34, color: "#f4f0e6" }}>
-          <span style={{ color: "#ff2e12" }}>Jung. Düster. Gnadenlos.</span>
+          <span style={{ color: "#ff2e12" }}>Düster. Gnadenlos. Komisch.</span>
           <span style={{ color: "#8c857b", marginLeft: 16 }}>
             Köln · deutschlandweit
           </span>

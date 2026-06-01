@@ -49,13 +49,13 @@ export const metadata: Metadata = {
     siteName: "Daphni Georoglidis",
     title: "Daphni Georoglidis — Stand-up Comedienne & Schauspielerin",
     description:
-      "Jung. Düster. Gnadenlos. Stand-up-Comedienne & Schauspielerin aus Köln — deutschlandweit auf Tour. Termine immer auf Instagram.",
+      "Düster. Gnadenlos. Komisch. Stand-up-Comedienne & Schauspielerin aus Köln — deutschlandweit auf Tour. Termine immer auf Instagram.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Daphni Georoglidis — Stand-up Comedienne & Schauspielerin",
     description:
-      "Jung. Düster. Gnadenlos. Stand-up-Comedienne & Schauspielerin aus Köln — deutschlandweit auf Tour.",
+      "Düster. Gnadenlos. Komisch. Stand-up-Comedienne & Schauspielerin aus Köln — deutschlandweit auf Tour.",
     creator: "@daphnigg",
   },
   robots: {
