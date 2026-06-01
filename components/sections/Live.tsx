@@ -2,7 +2,8 @@ import { Reveal, RevealText } from "../Reveal";
 import { ArrowUpRight } from "lucide-react";
 import { site } from "@/lib/site";
 import Magnetic from "../Magnetic";
-import InstagramFeed from "./InstagramFeed";
+import FeaturedReel from "../reels/FeaturedReel";
+import ReelWall from "../reels/ReelWall";
 
 export default function Live() {
   return (
@@ -54,9 +55,28 @@ export default function Live() {
               </Reveal>
             </div>
 
-            <div>
-              <InstagramFeed />
+            <Reveal delay={0.15}>
+              <FeaturedReel />
+            </Reveal>
+          </div>
+
+          {/* Native reel wall — self-hosted, no Instagram iframe */}
+          <div className="relative mt-14 border-t border-bone/10 pt-10">
+            <div className="mb-6 flex items-end justify-between">
+              <h3 className="font-display text-2xl text-bone md:text-3xl">
+                Mehr <span className="italic text-accent">Reels</span>
+              </h3>
+              <a
+                href={site.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor
+                className="accent-link text-sm text-bone/70"
+              >
+                Alle auf Instagram
+              </a>
             </div>
+            <ReelWall />
           </div>
         </div>
       </div>

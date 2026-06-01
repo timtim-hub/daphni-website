@@ -23,16 +23,33 @@ export const training = [
   { year: "2021", title: "Meisner Technique", instructor: "Jerry Coyle" },
 ] as const;
 
-// Real, current posts from @daphni.comedy (pulled from her live profile) —
-// only loaded after explicit consent (DSGVO). Most recent first.
-export const instagramPosts = [
-  { id: "DY12eX3M0nx", embedUrl: "https://www.instagram.com/p/DY12eX3M0nx/embed" },
-  { id: "DYo7JgAMzj6", embedUrl: "https://www.instagram.com/p/DYo7JgAMzj6/embed" },
-  { id: "DYUMvOqNx30", embedUrl: "https://www.instagram.com/p/DYUMvOqNx30/embed" },
-  { id: "DYEmXjYslDq", embedUrl: "https://www.instagram.com/p/DYEmXjYslDq/embed" },
-  { id: "DX4LxsOsNBc", embedUrl: "https://www.instagram.com/p/DX4LxsOsNBc/embed" },
-  { id: "DXyjqfLsO4m", embedUrl: "https://www.instagram.com/p/DXyjqfLsO4m/embed" },
-  { id: "DXmDVwnjO-h", embedUrl: "https://www.instagram.com/p/DXmDVwnjO-h/embed" },
-  { id: "DWHMro9jJKQ", embedUrl: "https://www.instagram.com/p/DWHMro9jJKQ/embed" },
-  { id: "DIgLOCAs7jJ", embedUrl: "https://www.instagram.com/p/DIgLOCAs7jJ/embed" },
-] as const;
+// Reels from @daphni.comedy — downloaded and self-hosted (no Instagram iframe,
+// no third-party request on load). `href` links back to the original post.
+export interface Reel {
+  id: string;
+  src: string;
+  poster: string;
+  href: string;
+}
+
+export const featuredReel: Reel = {
+  id: "DY12eX3M0nx",
+  src: "/media/reels/DY12eX3M0nx.mp4",
+  poster: "/media/reels/DY12eX3M0nx.jpg",
+  href: "https://www.instagram.com/p/DY12eX3M0nx/",
+};
+
+export const reels: Reel[] = [
+  "DYo7JgAMzj6",
+  "DYUMvOqNx30",
+  "DYEmXjYslDq",
+  "DX4LxsOsNBc",
+  "DXyjqfLsO4m",
+  "DXmDVwnjO-h",
+  "DWHMro9jJKQ",
+].map((id) => ({
+  id,
+  src: `/media/reels/${id}.mp4`,
+  poster: `/media/reels/${id}.jpg`,
+  href: `https://www.instagram.com/p/${id}/`,
+}));

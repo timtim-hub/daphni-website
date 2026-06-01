@@ -1,4 +1,3 @@
-import { ConsentProvider } from "@/components/ConsentManager";
 import SmoothScroll from "@/components/SmoothScroll";
 import Grain from "@/components/Grain";
 import Cursor from "@/components/Cursor";
@@ -13,7 +12,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <ConsentProvider>
+    <>
       <SmoothScroll />
       <Grain />
       <Cursor />
@@ -27,6 +26,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-    </ConsentProvider>
+    </>
   );
 }

@@ -26,8 +26,9 @@ export default function Datenschutz() {
           <p className="text-smoke mb-16 max-w-xl">
             Der Schutz deiner Daten ist uns wichtig. Diese Website ist bewusst
             datensparsam gebaut: keine Tracker, keine Analyse-Cookies, keine
-            Werbenetzwerke. Externe Inhalte werden nur nach deiner ausdrücklichen
-            Einwilligung geladen.
+            Werbenetzwerke. Alle Medien (Bilder &amp; Videos) werden lokal von diesem
+            Server ausgeliefert — beim Seitenaufruf werden keine Daten an Dritte
+            übertragen.
           </p>
 
           <div className="space-y-12 text-[1.05rem] leading-relaxed text-bone/85">
@@ -76,43 +77,41 @@ export default function Datenschutz() {
 
             <section>
               <h2 className="font-display text-2xl mb-4 text-bone">
-                4. Instagram-Einbettung (nur mit Einwilligung)
+                4. Videos &amp; Reels (lokal gehostet)
               </h2>
               <p>
-                Auf dieser Website können Beiträge des Instagram-Profils{" "}
-                <strong>@daphni.comedy</strong> eingebettet werden. Diese Inhalte werden{" "}
-                <strong>erst nach deiner aktiven Einwilligung</strong> geladen
-                (Opt-in). Vorher wird keine Verbindung zu Instagram aufgebaut.
+                Die auf dieser Website gezeigten Videos/Reels von{" "}
+                <strong>@daphni.comedy</strong> werden <strong>lokal von diesem Server
+                ausgeliefert</strong> (keine Instagram-Einbettung per iframe). Beim
+                Aufruf der Seite wird daher <strong>keine</strong> Verbindung zu
+                Instagram oder Meta aufgebaut und es werden keine personenbezogenen Daten
+                an Dritte übertragen. Rechtsgrundlage für die Darstellung der Inhalte ist
+                unser berechtigtes Interesse an einer ansprechenden Außendarstellung
+                (Art. 6 Abs. 1 lit. f DSGVO).
               </p>
               <p className="mt-3">
-                Stimmst du zu, baut dein Browser eine direkte Verbindung zu den Servern
-                von Instagram bzw. Meta (Meta Platforms Ireland Ltd., 4 Grand Canal
-                Square, Dublin 2, Irland) auf. Dabei können u. a. deine IP-Adresse,
-                Browserdaten und Interaktionsdaten an Meta übertragen werden. Rechtsgrundlage
-                ist deine Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Du kannst die
-                Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen (über die
-                Cookie-/Consent-Einstellung auf der Seite). Weitere Informationen:{" "}
+                Erst wenn du aktiv auf einen Instagram-Link oder ein Reel klickst, wirst
+                du zu Instagram weitergeleitet; dann gelten die{" "}
                 <a
                   href="https://privacycenter.instagram.com/policy"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="accent-link text-accent"
                 >
-                  Datenschutzrichtlinie von Instagram
-                </a>
-                .
+                  Datenschutzbestimmungen von Instagram
+                </a>{" "}
+                (Meta Platforms Ireland Ltd., 4 Grand Canal Square, Dublin 2, Irland).
               </p>
             </section>
 
             <section>
               <h2 className="font-display text-2xl mb-4 text-bone">
-                5. Speicherung der Einwilligung
+                5. Keine Cookies, kein Tracking
               </h2>
               <p>
-                Deine Entscheidung zur Instagram-Einbettung wird ausschließlich lokal in
-                deinem Browser gespeichert (localStorage), damit sie bei deinem nächsten
-                Besuch respektiert wird. Diese Information verlässt dein Gerät nicht und
-                wird nicht an uns übertragen.
+                Diese Website setzt <strong>keine Cookies</strong>, nutzt keine
+                Analyse- oder Tracking-Dienste und bindet keine Werbenetzwerke ein. Es
+                werden keine Profile über dich gebildet.
               </p>
             </section>
 
