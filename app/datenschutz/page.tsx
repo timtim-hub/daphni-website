@@ -1,130 +1,177 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { ArrowLeft, Shield, Cookie, Mail, MapPin } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Datenschutzerklärung",
+  description:
+    "Datenschutzerklärung von Daphni Georoglidis — Informationen nach DSGVO zu Hosting, Server-Logs und Instagram-Einbettung.",
+  robots: { index: true, follow: true },
+};
 
 export default function Datenschutz() {
   return (
-    <div className="min-h-screen bg-[#fff0db]">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 py-4 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            className="bg-white rounded-full px-6 py-3 flex items-center justify-between border-2 border-[#DCAE96]"
-            initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Link href="/" className="text-xl font-bold">
-              <span className="text-[#90645A]">Daphni</span>
-              <span className="text-[#6b5b54] font-light"> Georoglidis</span>
-            </Link>
-            
-            <Link 
-              href="/"
-              className="flex items-center gap-2 text-sm text-[#6b5b54] hover:text-[#90645A]"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Zurück
-            </Link>
-          </motion.div>
-        </div>
+    <div className="min-h-screen bg-ink text-bone">
+      <header className="container-px py-8">
+        <Link href="/" className="eyebrow accent-link">
+          ← Zurück zur Startseite
+        </Link>
       </header>
 
-      {/* Content */}
-      <main className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#3d2e2a]">
-              <span className="text-[#90645A]">Datenschutz</span>
-            </h1>
-            <p className="text-[#6b5b54] mb-12">Informationen zum Datenschutz</p>
+      <main className="container-px pb-32 pt-8">
+        <div className="mx-auto max-w-3xl">
+          <p className="eyebrow mb-4">Rechtliches</p>
+          <h1 className="font-display text-[clamp(2.5rem,8vw,5rem)] leading-[0.9] mb-8">
+            Datenschutz
+          </h1>
+          <p className="text-smoke mb-16 max-w-xl">
+            Der Schutz deiner Daten ist uns wichtig. Diese Website ist bewusst
+            datensparsam gebaut: keine Tracker, keine Analyse-Cookies, keine
+            Werbenetzwerke. Externe Inhalte werden nur nach deiner ausdrücklichen
+            Einwilligung geladen.
+          </p>
 
-            <div className="space-y-8">
-              <section className="bg-white rounded-2xl p-8 border-2 border-[#DCAE96]">
-                <div className="flex items-center gap-3 mb-6">
-                  <Shield className="w-6 h-6 text-[#90645A]" />
-                  <h2 className="text-xl font-semibold text-[#3d2e2a]">Datenschutz auf einen Blick</h2>
-                </div>
-                <p className="text-[#6b5b54] leading-relaxed">
-                  Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen 
-                  Daten passiert, wenn Sie diese Website besuchen.
-                </p>
-              </section>
+          <div className="space-y-12 text-[1.05rem] leading-relaxed text-bone/85">
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">
+                1. Verantwortlicher
+              </h2>
+              <p className="text-bone">Daphni Georoglidis</p>
+              <p>c/o Moltkestraße 79</p>
+              <p>50674 Köln</p>
+              <p className="mt-2">
+                E-Mail:{" "}
+                <a href="mailto:kontakt@daphni-georoglidis.de" className="accent-link text-accent">
+                  kontakt@daphni-georoglidis.de
+                </a>
+              </p>
+            </section>
 
-              <section className="bg-white rounded-2xl p-8 border-2 border-[#DCAE96]">
-                <h2 className="text-xl font-semibold mb-6 text-[#3d2e2a]">Verantwortlicher</h2>
-                <div className="space-y-3 text-[#6b5b54]">
-                  <p className="font-semibold text-[#3d2e2a]">Daphni Georoglidis</p>
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-[#90645A] mt-0.5" />
-                    <div>
-                      <p>Musterstraße 123</p>
-                      <p>50667 Köln</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Mail className="w-5 h-5 text-[#90645A]" />
-                    <a href="mailto:kontakt@daphni-georoglidis.de" className="hover:text-[#90645A]">
-                      kontakt@daphni-georoglidis.de
-                    </a>
-                  </div>
-                </div>
-              </section>
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">
+                2. Hosting (Netlify)
+              </h2>
+              <p>
+                Diese Website wird bei Netlify (Netlify, Inc., 512 2nd Street, Suite
+                200, San Francisco, CA 94107, USA) gehostet. Beim Aufruf der Seite
+                verarbeitet Netlify technisch notwendige Daten (sog. Server-Logfiles)
+                wie IP-Adresse, Datum und Uhrzeit des Zugriffs, übertragene Datenmenge,
+                Referrer-URL und User-Agent. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f
+                DSGVO (berechtigtes Interesse an einem sicheren, stabilen Betrieb). Mit
+                Netlify besteht ein Auftragsverarbeitungsvertrag; die Übermittlung in
+                die USA ist über die Standardvertragsklauseln abgesichert.
+              </p>
+            </section>
 
-              <section className="bg-white rounded-2xl p-8 border-2 border-[#DCAE96]">
-                <div className="flex items-center gap-3 mb-6">
-                  <Cookie className="w-6 h-6 text-[#90645A]" />
-                  <h2 className="text-xl font-semibold text-[#3d2e2a]">Cookies & Instagram</h2>
-                </div>
-                <p className="text-[#6b5b54] leading-relaxed mb-4">
-                  Diese Website verwendet Cookies und bindet Instagram-Inhalte ein. 
-                  Für die Anzeige von Instagram-Posts ist Ihre Zustimmung erforderlich.
-                </p>
-                <p className="text-[#6b5b54] leading-relaxed">
-                  Wenn Sie die Instagram-Inhalte aktivieren, baut Ihr Browser eine direkte Verbindung 
-                  zu den Servern von Instagram auf. Dabei werden verschiedene Daten übertragen.
-                </p>
-              </section>
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">
+                3. Schriftarten (lokal gehostet)
+              </h2>
+              <p>
+                Die verwendeten Schriftarten werden lokal von diesem Server
+                ausgeliefert. Es findet <strong>keine</strong> Verbindung zu Google
+                Fonts oder anderen externen Anbietern statt. Es werden hierfür keine
+                personenbezogenen Daten an Dritte übertragen.
+              </p>
+            </section>
 
-              <section className="bg-white rounded-2xl p-8 border-2 border-[#DCAE96]">
-                <h2 className="text-xl font-semibold mb-6 text-[#3d2e2a]">Ihre Rechte</h2>
-                <div className="grid md:grid-cols-2 gap-3">
-                  {[
-                    "Recht auf Auskunft",
-                    "Recht auf Berichtigung",
-                    "Recht auf Löschung",
-                    "Recht auf Einschränkung",
-                    "Recht auf Datenübertragbarkeit",
-                    "Widerspruchsrecht",
-                  ].map((right) => (
-                    <div key={right} className="flex items-center gap-3 p-3 rounded-lg bg-[#fff0db] border border-[#DCAE96]">
-                      <div className="w-2 h-2 rounded-full bg-[#90645A]" />
-                      <span className="text-sm text-[#6b5b54]">{right}</span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            </div>
-          </motion.div>
-        </div>
-      </main>
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">
+                4. Instagram-Einbettung (nur mit Einwilligung)
+              </h2>
+              <p>
+                Auf dieser Website können Beiträge des Instagram-Profils{" "}
+                <strong>@daphnigg</strong> eingebettet werden. Diese Inhalte werden{" "}
+                <strong>erst nach deiner aktiven Einwilligung</strong> geladen
+                (Opt-in). Vorher wird keine Verbindung zu Instagram aufgebaut.
+              </p>
+              <p className="mt-3">
+                Stimmst du zu, baut dein Browser eine direkte Verbindung zu den Servern
+                von Instagram bzw. Meta (Meta Platforms Ireland Ltd., 4 Grand Canal
+                Square, Dublin 2, Irland) auf. Dabei können u. a. deine IP-Adresse,
+                Browserdaten und Interaktionsdaten an Meta übertragen werden. Rechtsgrundlage
+                ist deine Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Du kannst die
+                Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen (über die
+                Cookie-/Consent-Einstellung auf der Seite). Weitere Informationen:{" "}
+                <a
+                  href="https://privacycenter.instagram.com/policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="accent-link text-accent"
+                >
+                  Datenschutzrichtlinie von Instagram
+                </a>
+                .
+              </p>
+            </section>
 
-      {/* Footer */}
-      <footer className="border-t-2 border-[#DCAE96] py-8 px-4 bg-white">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#6b5b54]">
-          <p>© {new Date().getFullYear()} Daphni Georoglidis</p>
-          <div className="flex items-center gap-6">
-            <Link href="/" className="hover:text-[#90645A]">Startseite</Link>
-            <Link href="/impressum" className="hover:text-[#90645A]">Impressum</Link>
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">
+                5. Speicherung der Einwilligung
+              </h2>
+              <p>
+                Deine Entscheidung zur Instagram-Einbettung wird ausschließlich lokal in
+                deinem Browser gespeichert (localStorage), damit sie bei deinem nächsten
+                Besuch respektiert wird. Diese Information verlässt dein Gerät nicht und
+                wird nicht an uns übertragen.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">
+                6. Externe Links
+              </h2>
+              <p>
+                Verweise auf externe Profile (z. B. Instagram) sind als Links umgesetzt.
+                Erst durch aktives Anklicken gelangst du zum jeweiligen Anbieter, dessen
+                Datenschutzbestimmungen dann gelten.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">7. Deine Rechte</h2>
+              <p className="mb-4">Dir stehen nach der DSGVO folgende Rechte zu:</p>
+              <ul className="grid sm:grid-cols-2 gap-3">
+                {[
+                  "Auskunft (Art. 15)",
+                  "Berichtigung (Art. 16)",
+                  "Löschung (Art. 17)",
+                  "Einschränkung (Art. 18)",
+                  "Datenübertragbarkeit (Art. 20)",
+                  "Widerspruch (Art. 21)",
+                  "Widerruf der Einwilligung (Art. 7 Abs. 3)",
+                  "Beschwerde bei einer Aufsichtsbehörde (Art. 77)",
+                ].map((r) => (
+                  <li
+                    key={r}
+                    className="surface px-4 py-3 text-sm flex items-center gap-3"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                    {r}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">
+                8. Beschwerderecht
+              </h2>
+              <p>
+                Zuständige Aufsichtsbehörde ist die Landesbeauftragte für Datenschutz und
+                Informationsfreiheit Nordrhein-Westfalen (LDI NRW), Postfach 20 04 44,
+                40102 Düsseldorf.
+              </p>
+            </section>
+
+            <p className="text-smoke text-sm pt-4">Stand: Juni 2026</p>
+          </div>
+
+          <div className="mt-20 border-t border-bone/10 pt-8 flex gap-8 text-sm text-smoke">
+            <Link href="/" className="accent-link">Startseite</Link>
+            <Link href="/impressum" className="accent-link">Impressum</Link>
           </div>
         </div>
-      </footer>
+      </main>
     </div>
   );
 }

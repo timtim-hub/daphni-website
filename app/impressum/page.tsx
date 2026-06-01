@@ -1,102 +1,131 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { ArrowLeft, Mail, MapPin } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Impressum",
+  description: "Impressum und Anbieterkennzeichnung von Daphni Georoglidis.",
+  robots: { index: true, follow: true },
+};
 
 export default function Impressum() {
   return (
-    <div className="min-h-screen bg-[#fff0db]">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 py-4 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            className="bg-white rounded-full px-6 py-3 flex items-center justify-between border-2 border-[#DCAE96]"
-            initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Link href="/" className="text-xl font-bold">
-              <span className="text-[#90645A]">Daphni</span>
-              <span className="text-[#6b5b54] font-light"> Georoglidis</span>
-            </Link>
-            
-            <Link 
-              href="/"
-              className="flex items-center gap-2 text-sm text-[#6b5b54] hover:text-[#90645A] transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Zurück
-            </Link>
-          </motion.div>
-        </div>
+    <div className="min-h-screen bg-ink text-bone">
+      <header className="container-px py-8">
+        <Link href="/" className="eyebrow accent-link">
+          ← Zurück zur Startseite
+        </Link>
       </header>
 
-      {/* Content */}
-      <main className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-12 text-[#3d2e2a]">
-              <span className="text-[#90645A]">Impressum</span>
-            </h1>
+      <main className="container-px pb-32 pt-8">
+        <div className="mx-auto max-w-3xl">
+          <p className="eyebrow mb-4">Rechtliches</p>
+          <h1 className="font-display text-[clamp(2.5rem,8vw,5rem)] leading-[0.9] mb-16">
+            Impressum
+          </h1>
 
-            <div className="space-y-8">
-              <section className="bg-white rounded-2xl p-8 border-2 border-[#DCAE96]">
-                <h2 className="text-xl font-semibold mb-6 text-[#3d2e2a]">Angaben gemäß § 5 TMG</h2>
-                <div className="space-y-4 text-[#6b5b54]">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-[#90645A] mt-0.5" />
-                    <div>
-                      <p className="font-semibold text-[#3d2e2a]">Daphni Georoglidis</p>
-                      <p>Musterstraße 123</p>
-                      <p>50667 Köln</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Mail className="w-5 h-5 text-[#90645A]" />
-                    <a href="mailto:kontakt@daphni-georoglidis.de" className="hover:text-[#90645A]">
-                      kontakt@daphni-georoglidis.de
-                    </a>
-                  </div>
-                </div>
-              </section>
+          <div className="space-y-12 text-[1.05rem] leading-relaxed text-bone/85">
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">
+                Angaben gemäß § 5 DDG (ehem. TMG)
+              </h2>
+              <p className="text-bone">Daphni Georoglidis</p>
+              <p>c/o Moltkestraße 79</p>
+              <p>50674 Köln</p>
+              <p className="mt-2 text-smoke">Deutschland</p>
+            </section>
 
-              <section className="bg-white rounded-2xl p-8 border-2 border-[#DCAE96]">
-                <h2 className="text-xl font-semibold mb-4 text-[#3d2e2a]">Streitschlichtung</h2>
-                <p className="text-[#6b5b54] leading-relaxed">
-                  Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
-                  <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-[#90645A] hover:underline ml-1">
-                    https://ec.europa.eu/consumers/odr
-                  </a>.
-                </p>
-              </section>
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">Kontakt</h2>
+              {/* HINWEIS: Für §5 DDG ist eine schnelle elektronische Kontaktaufnahme
+                  (i. d. R. E-Mail) gesetzlich erforderlich. Bitte gültige Adresse eintragen. */}
+              <p>
+                E-Mail:{" "}
+                <a
+                  href="mailto:kontakt@daphni-georoglidis.de"
+                  className="accent-link text-accent"
+                >
+                  kontakt@daphni-georoglidis.de
+                </a>
+              </p>
+              <p className="mt-1">
+                Instagram:{" "}
+                <a
+                  href="https://instagram.com/daphnigg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="accent-link text-accent"
+                >
+                  @daphnigg
+                </a>
+              </p>
+            </section>
 
-              <section className="bg-white rounded-2xl p-8 border-2 border-[#DCAE96]">
-                <h2 className="text-xl font-semibold mb-4 text-[#3d2e2a]">Haftung für Inhalte</h2>
-                <p className="text-[#6b5b54] leading-relaxed">
-                  Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten 
-                  nach den allgemeinen Gesetzen verantwortlich.
-                </p>
-              </section>
-            </div>
-          </motion.div>
-        </div>
-      </main>
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">
+                Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
+              </h2>
+              <p>Daphni Georoglidis</p>
+              <p>c/o Moltkestraße 79, 50674 Köln</p>
+            </section>
 
-      {/* Footer */}
-      <footer className="border-t-2 border-[#DCAE96] py-8 px-4 bg-white">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#6b5b54]">
-          <p>© {new Date().getFullYear()} Daphni Georoglidis</p>
-          <div className="flex items-center gap-6">
-            <Link href="/" className="hover:text-[#90645A]">Startseite</Link>
-            <Link href="/datenschutz" className="hover:text-[#90645A]">Datenschutz</Link>
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">Streitschlichtung</h2>
+              <p>
+                Die Europäische Kommission stellt eine Plattform zur
+                Online-Streitbeilegung (OS) bereit:{" "}
+                <a
+                  href="https://ec.europa.eu/consumers/odr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="accent-link text-accent"
+                >
+                  ec.europa.eu/consumers/odr
+                </a>
+                . Wir sind nicht verpflichtet und nicht bereit, an einem
+                Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
+                teilzunehmen.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">Haftung für Inhalte</h2>
+              <p>
+                Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte
+                auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach
+                §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht
+                verpflichtet, übermittelte oder gespeicherte fremde Informationen zu
+                überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
+                Tätigkeit hinweisen.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">Haftung für Links</h2>
+              <p>
+                Unser Angebot enthält Links zu externen Websites Dritter (u. a.
+                Instagram), auf deren Inhalte wir keinen Einfluss haben. Deshalb können
+                wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die
+                Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder
+                Betreiber der Seiten verantwortlich.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-display text-2xl mb-4 text-bone">Urheberrecht</h2>
+              <p>
+                Die durch die Seitenbetreiberin erstellten Inhalte und Werke auf diesen
+                Seiten unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als
+                solche gekennzeichnet.
+              </p>
+            </section>
+          </div>
+
+          <div className="mt-20 border-t border-bone/10 pt-8 flex gap-8 text-sm text-smoke">
+            <Link href="/" className="accent-link">Startseite</Link>
+            <Link href="/datenschutz" className="accent-link">Datenschutz</Link>
           </div>
         </div>
-      </footer>
+      </main>
     </div>
   );
 }

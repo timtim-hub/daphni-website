@@ -1,42 +1,121 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Fraunces, Geist } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  display: "swap",
+  axes: ["opsz", "SOFT", "WONK"],
+});
+
+const geist = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const SITE_URL = "https://daphni-website.netlify.app";
 
 export const metadata: Metadata = {
-  title: "Daphni Georoglidis | Stand-up Comedienne & Schauspielerin",
-  description: "Daphni Georoglidis - Stand-up Comedienne & Schauspielerin aus Köln. Dark Humor mit gnadenloser Direktheit. Jetzt Tickets für Live-Shows sichern!",
-  keywords: ["Daphni Georoglidis", "Comedian", "Schauspielerin", "Stand-up Comedy", "Köln", "Dark Humor"],
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Daphni Georoglidis — Stand-up Comedienne & Schauspielerin",
+    template: "%s · Daphni Georoglidis",
+  },
+  description:
+    "Daphni Georoglidis ist Stand-up-Comedienne und Schauspielerin aus Köln — Dark Humor, gnadenlos direkt. Auftritte u. a. in Köln, Düsseldorf, Berlin und deutschlandweit. Aktuelle Termine immer auf Instagram.",
+  keywords: [
+    "Comedienne",
+    "Comedienne Köln",
+    "Comedienne Düsseldorf",
+    "Comedienne Berlin",
+    "Stand-up Comedienne",
+    "Daphni Georoglidis",
+    "Comedian Köln",
+    "Komikerin",
+    "Schauspielerin Köln",
+    "Dark Humor Comedy",
+    "Stand-up Comedy Deutschland",
+    "Comedienne buchen",
+  ],
   authors: [{ name: "Daphni Georoglidis" }],
+  creator: "Daphni Georoglidis",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Daphni Georoglidis | Stand-up Comedienne & Schauspielerin",
-    description: "Jung, düster – und überraschend gnadenlos. Daphni Georoglidis geht in ihrer Comedy genau dorthin, wo es weh tut.",
     type: "website",
     locale: "de_DE",
+    url: SITE_URL,
+    siteName: "Daphni Georoglidis",
+    title: "Daphni Georoglidis — Stand-up Comedienne & Schauspielerin",
+    description:
+      "Jung. Düster. Gnadenlos. Stand-up-Comedienne & Schauspielerin aus Köln — deutschlandweit auf Tour. Termine immer auf Instagram.",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Daphni Georoglidis — Stand-up Comedienne & Schauspielerin",
+    description:
+      "Jung. Düster. Gnadenlos. Stand-up-Comedienne & Schauspielerin aus Köln — deutschlandweit auf Tour.",
+    creator: "@daphnigg",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+  category: "Entertainment",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0b0b0d",
+  colorScheme: "dark",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: "Daphni Georoglidis",
+      jobTitle: ["Stand-up Comedienne", "Schauspielerin"],
+      description:
+        "Stand-up-Comedienne und Schauspielerin aus Köln mit Dark Humor. Tritt deutschlandweit auf, u. a. in Köln, Düsseldorf und Berlin.",
+      url: SITE_URL,
+      image: `${SITE_URL}/daphni_portrait.png`,
+      sameAs: ["https://instagram.com/daphnigg"],
+      knowsLanguage: ["de", "en"],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Köln",
+        addressCountry: "DE",
+      },
+      worksFor: { "@type": "Organization", name: "Freelance / Selbstständig" },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Daphni Georoglidis",
+      inLanguage: "de-DE",
+      about: { "@id": `${SITE_URL}/#person` },
+      publisher: { "@id": `${SITE_URL}/#person` },
+    },
+  ],
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de" className="dark">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="de" className={`${fraunces.variable} ${geist.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
