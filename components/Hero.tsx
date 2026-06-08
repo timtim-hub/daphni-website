@@ -48,14 +48,14 @@ function PortraitImage() {
         priority
         sizes="(max-width: 1024px) 100vw, 50vw"
         className="object-contain object-bottom"
-        style={{ filter: "grayscale(0.5) contrast(1.06) brightness(0.95) saturate(0.9)" }}
+        style={{ filter: "grayscale(0.32) contrast(1.04) brightness(1.12) saturate(0.95)" }}
       />
       {/* accent duotone wash */}
       <div
         aria-hidden
-        className="absolute inset-0 mix-blend-soft-light opacity-50"
+        className="absolute inset-0 mix-blend-soft-light opacity-35"
         style={{
-          background: "linear-gradient(180deg, rgba(255,46,18,0.25), transparent 55%)",
+          background: "linear-gradient(180deg, rgba(255,46,18,0.2), transparent 55%)",
         }}
       />
     </div>

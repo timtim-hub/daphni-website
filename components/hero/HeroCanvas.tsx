@@ -48,13 +48,16 @@ const fragment = /* glsl */ `
     vec3 ink  = vec3(0.043, 0.043, 0.051);
     vec3 bone = vec3(0.956, 0.941, 0.902);
     vec3 duo  = mix(ink, bone, smoothstep(0.05, 0.95, lum));
-    col = mix(col, duo, 0.32);
+    col = mix(col, duo, 0.26);
 
     float grain = fract(sin(dot(uv * (uTime + 1.0), vec2(12.9898, 78.233))) * 43758.5453);
     col += (grain - 0.5) * 0.045;
 
     float vig = smoothstep(1.05, 0.2, length(dir));
-    col *= mix(0.72, 1.0, vig);
+    col *= mix(0.86, 1.06, vig);
+
+    // overall brightness lift
+    col *= 1.1;
 
     gl_FragColor = vec4(col, g.a);
   }
