@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { Reveal } from "../Reveal";
 import { Mic, Drama, Flame } from "lucide-react";
+import WorkMedia from "../work/WorkMedia";
 
 const pillars = [
   {
@@ -9,7 +9,8 @@ const pillars = [
     title: "Stand-up Comedy",
     body: "Live auf der Bühne — pointiert, direkt, ohne Sicherheitsnetz. Comedy, die nicht nur unterhält, sondern trifft.",
     span: "md:col-span-3 md:row-span-2",
-    image: "/media/work/standup.jpg",
+    video: "/media/work/standup.mp4",
+    poster: "/media/work/standup.jpg",
     position: "center 26%",
   },
   {
@@ -18,7 +19,8 @@ const pillars = [
     title: "Dark Humor",
     body: "Das Unbequeme als Pointe. Themen, über die man eigentlich nicht lacht — bis es befreit.",
     span: "md:col-span-2",
-    image: "/media/work/dark.jpg",
+    video: "/media/work/dark.mp4",
+    poster: "/media/work/dark.jpg",
     position: "center 28%",
   },
   {
@@ -27,7 +29,8 @@ const pillars = [
     title: "Schauspiel",
     body: "Film, Theater und Hörspiel. Von Pulp Fiction bis Comedy-Film — Rollen mit Kante.",
     span: "md:col-span-2",
-    image: "/media/work/acting.jpg",
+    video: "/media/work/acting.mp4",
+    poster: "/media/work/acting.jpg",
     position: "center 16%",
   },
 ];
@@ -54,14 +57,12 @@ export default function Work() {
           {pillars.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08} className={p.span}>
               <article className="group surface relative flex h-full min-h-[260px] flex-col justify-between gap-10 overflow-hidden p-8 transition-colors duration-500 hover:border-accent/50">
-                {/* background portrait */}
-                <Image
-                  src={p.image}
+                {/* background clip (short, muted, looping) */}
+                <WorkMedia
+                  src={p.video}
+                  poster={p.poster}
+                  position={p.position}
                   alt={`Daphni Georoglidis — ${p.title}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.06]"
-                  style={{ objectPosition: p.position }}
                 />
                 {/* legibility overlay */}
                 <div
