@@ -54,10 +54,10 @@ const fragment = /* glsl */ `
     col += (grain - 0.5) * 0.045;
 
     float vig = smoothstep(1.05, 0.2, length(dir));
-    col *= mix(0.86, 1.06, vig);
+    col *= mix(0.9, 1.08, vig);
 
     // overall brightness lift
-    col *= 1.1;
+    col *= 1.18;
 
     gl_FragColor = vec4(col, g.a);
   }

@@ -29,8 +29,12 @@ function useEnable3D() {
   return enabled;
 }
 
-/** Premium duotone-treated portrait — always rendered; also the WebGL fallback. */
-function PortraitImage() {
+/**
+ * Premium duotone-treated portrait. The atmospheric glow + wash always render;
+ * the raw <Image> fades out once the WebGL canvas takes over (`imageHidden`) so
+ * the two portraits never overlap/ghost on pointer movement.
+ */
+function PortraitImage({ imageHidden = false }: { imageHidden?: boolean }) {
   return (
     <div className="absolute inset-0">
       <div
@@ -47,8 +51,11 @@ function PortraitImage() {
         fill
         priority
         sizes="(max-width: 1024px) 100vw, 50vw"
-        className="object-contain object-bottom"
-        style={{ filter: "grayscale(0.32) contrast(1.04) brightness(1.12) saturate(0.95)" }}
+        className="object-contain object-bottom transition-opacity duration-700"
+        style={{
+          filter: "grayscale(0.28) contrast(1.04) brightness(1.2) saturate(0.97)",
+          opacity: imageHidden ? 0 : 1,
+        }}
       />
       {/* accent duotone wash */}
       <div
@@ -79,7 +86,7 @@ export default function Hero() {
       {/* ---------------- Portrait column (right on desktop, top on mobile) ---------------- */}
       <div className="relative order-1 h-[52svh] min-h-[320px] lg:order-2 lg:col-span-5 lg:h-auto xl:col-span-6">
         <div className="absolute inset-0">
-          <PortraitImage />
+          <PortraitImage imageHidden={show3D && ready} />
           {show3D && (
             <div
               className="absolute inset-0 transition-opacity duration-1000"
