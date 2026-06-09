@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Reveal } from "../Reveal";
 import { Mic, Drama, Flame } from "lucide-react";
 
@@ -8,6 +9,8 @@ const pillars = [
     title: "Stand-up Comedy",
     body: "Live auf der Bühne — pointiert, direkt, ohne Sicherheitsnetz. Comedy, die nicht nur unterhält, sondern trifft.",
     span: "md:col-span-3 md:row-span-2",
+    image: "/media/work/standup.jpg",
+    position: "center 26%",
   },
   {
     icon: Flame,
@@ -15,6 +18,8 @@ const pillars = [
     title: "Dark Humor",
     body: "Das Unbequeme als Pointe. Themen, über die man eigentlich nicht lacht — bis es befreit.",
     span: "md:col-span-2",
+    image: "/media/work/dark.jpg",
+    position: "center 28%",
   },
   {
     icon: Drama,
@@ -22,6 +27,8 @@ const pillars = [
     title: "Schauspiel",
     body: "Film, Theater und Hörspiel. Von Pulp Fiction bis Comedy-Film — Rollen mit Kante.",
     span: "md:col-span-2",
+    image: "/media/work/acting.jpg",
+    position: "center 16%",
   },
 ];
 
@@ -46,16 +53,40 @@ export default function Work() {
         <div className="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-5">
           {pillars.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08} className={p.span}>
-              <article className="group surface flex h-full flex-col justify-between gap-10 p-8 transition-colors duration-500 hover:border-accent/50">
-                <div className="flex items-start justify-between">
-                  <p.icon className="h-7 w-7 text-accent" strokeWidth={1.5} />
-                  <span className="font-display text-sm text-smoke">{p.no}</span>
+              <article className="group surface relative flex h-full min-h-[260px] flex-col justify-between gap-10 overflow-hidden p-8 transition-colors duration-500 hover:border-accent/50">
+                {/* background portrait */}
+                <Image
+                  src={p.image}
+                  alt={`Daphni Georoglidis — ${p.title}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.06]"
+                  style={{ objectPosition: p.position }}
+                />
+                {/* legibility overlay */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(to top, var(--ink) 8%, color-mix(in oklab, var(--ink) 78%, transparent) 42%, color-mix(in oklab, var(--ink) 35%, transparent) 100%)",
+                  }}
+                />
+
+                <div className="relative z-10 flex items-start justify-between">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-ink/55 backdrop-blur-sm">
+                    <p.icon className="h-5 w-5 text-accent" strokeWidth={1.5} />
+                  </span>
+                  <span className="font-display text-sm text-bone/70">{p.no}</span>
                 </div>
-                <div>
+
+                <div className="relative z-10">
                   <h3 className="font-display text-3xl text-bone md:text-4xl">
                     {p.title}
                   </h3>
-                  <p className="mt-4 max-w-md text-bone/65">{p.body}</p>
+                  <p className="mt-3 max-w-md text-sm leading-relaxed text-bone/70 md:text-base">
+                    {p.body}
+                  </p>
                 </div>
               </article>
             </Reveal>
