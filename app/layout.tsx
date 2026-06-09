@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Geist } from "next/font/google";
 import "./globals.css";
+import ServiceWorker from "@/components/ServiceWorker";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -41,6 +42,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Daphni Georoglidis" }],
   creator: "Daphni Georoglidis",
+  applicationName: "Daphni",
+  appleWebApp: {
+    capable: true,
+    title: "Daphni",
+    statusBarStyle: "black-translucent",
+  },
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -115,7 +122,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <ServiceWorker />
+      </body>
     </html>
   );
 }
