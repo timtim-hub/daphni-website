@@ -1,5 +1,5 @@
 /* Daphni Georoglidis — minimal offline-capable service worker */
-const CACHE = "daphni-v1";
+const CACHE = "daphni-v2";
 const PRECACHE = [
   "/",
   "/impressum/",
@@ -7,7 +7,7 @@ const PRECACHE = [
   "/manifest.webmanifest",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
-  "/daphni_portrait.png",
+  "/daphni_portrait.webp",
 ];
 
 self.addEventListener("install", (event) => {

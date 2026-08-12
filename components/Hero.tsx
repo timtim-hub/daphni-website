@@ -46,7 +46,7 @@ function PortraitImage({ imageHidden = false }: { imageHidden?: boolean }) {
         }}
       />
       <Image
-        src="/daphni_portrait.png"
+        src="/daphni_portrait.webp"
         alt={`${site.name}, ${site.roles[0]}`}
         fill
         priority

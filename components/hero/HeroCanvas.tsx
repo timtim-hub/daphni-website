@@ -37,7 +37,8 @@ const fragment = /* glsl */ `
     vec2 uv = vUv;
     vec2 dir = uv - 0.5;
 
-    float amt = 0.0022 + uHover * 0.005 + length(dir) * 0.003;
+    // Keep the RGB split subtle — too much reads as a blurry/ghosted image.
+    float amt = 0.0008 + uHover * 0.0015 + length(dir) * 0.0012;
     float r = texture2D(uTex, uv - dir * amt).r;
     vec4  g = texture2D(uTex, uv);
     float b = texture2D(uTex, uv + dir * amt).b;
@@ -64,12 +65,22 @@ const fragment = /* glsl */ `
 `;
 
 function Portrait() {
-  const tex = useTexture("/daphni_portrait.png");
+  const tex = useTexture("/daphni_portrait.webp");
   const matRef = useRef<THREE.ShaderMaterial>(null);
   const mesh = useRef<THREE.Mesh>(null);
-  const { viewport } = useThree();
+  const { viewport, gl } = useThree();
   const mouse = useRef(new THREE.Vector2(0, 0));
   const hover = useRef(0);
+
+  // Max anisotropic filtering + mipmaps keep the portrait crisp when the plane
+  // is scaled/tilted; without this the texture samples soft on retina screens.
+  useMemo(() => {
+    tex.anisotropy = gl.capabilities.getMaxAnisotropy();
+    tex.minFilter = THREE.LinearMipmapLinearFilter;
+    tex.magFilter = THREE.LinearFilter;
+    tex.generateMipmaps = true;
+    tex.needsUpdate = true;
+  }, [tex, gl]);
 
   const uniforms = useMemo(
     () => ({
@@ -122,7 +133,7 @@ export default function HeroCanvas({
 }) {
   return (
     <Canvas
-      dpr={[1, 1.75]}
+      dpr={[1, 2]}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance", failIfMajorPerformanceCaveat: false }}
       camera={{ position: [0, 0, 6], fov: 40 }}
       style={{ width: "100%", height: "100%" }}
