@@ -36,15 +36,13 @@ export default function Impressum() {
 
             <section>
               <h2 className="font-display text-2xl mb-4 text-bone">Kontakt</h2>
-              {/* HINWEIS: Für §5 DDG ist eine schnelle elektronische Kontaktaufnahme
-                  (i. d. R. E-Mail) gesetzlich erforderlich. Bitte gültige Adresse eintragen. */}
               <p>
                 E-Mail:{" "}
                 <a
-                  href="mailto:kontakt@daphni-georoglidis.de"
+                  href="mailto:Daphnigeoroglidis@gmail.com"
                   className="accent-link text-accent"
                 >
-                  kontakt@daphni-georoglidis.de
+                  Daphnigeoroglidis@gmail.com
                 </a>
               </p>
               <p className="mt-1">

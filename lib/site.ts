@@ -6,7 +6,7 @@ export const site = {
   tagline: ["Düster.", "Gnadenlos.", "Komisch."],
   instagram: "https://instagram.com/daphni.comedy",
   instagramHandle: "@daphni.comedy",
-  email: "kontakt@daphni-georoglidis.de",
+  email: "Daphnigeoroglidis@gmail.com",
   city: "Köln",
 } as const;
 

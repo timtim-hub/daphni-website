@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const SITE_URL = "https://daphni-website.netlify.app";
+const SITE_URL = "https://daphni-georoglidis.de";
 
 export const dynamic = "force-static";
 

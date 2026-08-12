@@ -41,8 +41,8 @@ export default function Datenschutz() {
               <p>50674 Köln</p>
               <p className="mt-2">
                 E-Mail:{" "}
-                <a href="mailto:kontakt@daphni-georoglidis.de" className="accent-link text-accent">
-                  kontakt@daphni-georoglidis.de
+                <a href="mailto:Daphnigeoroglidis@gmail.com" className="accent-link text-accent">
+                  Daphnigeoroglidis@gmail.com
                 </a>
               </p>
             </section>

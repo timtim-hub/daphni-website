@@ -10,6 +10,40 @@
   NPM_FLAGS = "--no-audit --no-fund"
 
 # ----------------------------------------------------------------------------
+# Canonical domain — consolidate all SEO signal on https://daphni-georoglidis.de
+# Every other hostname (Netlify subdomain, www, alternate spelling) 301s here.
+# ----------------------------------------------------------------------------
+[[redirects]]
+  from = "https://daphni-website.netlify.app/*"
+  to = "https://daphni-georoglidis.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://daphni-website.netlify.app/*"
+  to = "https://daphni-georoglidis.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.daphni-georoglidis.de/*"
+  to = "https://daphni-georoglidis.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://daphnigeoroglidis.de/*"
+  to = "https://daphni-georoglidis.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.daphnigeoroglidis.de/*"
+  to = "https://daphni-georoglidis.de/:splat"
+  status = 301
+  force = true
+
+# ----------------------------------------------------------------------------
 # Security headers (applied to every response)
 # ----------------------------------------------------------------------------
 [[headers]]
